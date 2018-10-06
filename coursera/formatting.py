@@ -64,13 +64,8 @@ def get_lecture_filename(combined_section_lectures_nums,
     title = title[:TITLE_MAX_LENGTH]
 
     # Format lecture file name
+    lecture_filename = os.path.join(section_dir, format_resource(lecnum + 1, lecname, title, fmt))
     if combined_section_lectures_nums:
-        lecture_filename = os.path.join(
-            section_dir,
-            format_combine_number_resource(
-                secnum + 1, lecnum + 1, lecname, title, fmt))
-    else:
-        lecture_filename = os.path.join(
-            section_dir, format_resource(lecnum + 1, lecname, title, fmt))
+        lecture_filename = os.path.join(os.path.dirname(lecture_filename), '--'.join(lecture_filename.split('/')[1:]))
 
     return lecture_filename
